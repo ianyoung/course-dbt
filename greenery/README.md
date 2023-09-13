@@ -1,15 +1,15 @@
-Welcome to your new dbt project!
+## Greenery Ecommerce 
 
-### Using the starter project
+### Project 1 Answers
 
-Try running the following commands:
-- dbt run
-- dbt test
+|     | Question                                                                      | Answer      |
+| --- | ----------------------------------------------------------------------------- | ----------- |
+| 1   | How many users do we have?                                                    | 130 unique  |
+| 2   | On average, how many orders do we receive per hour?                           | 7.52        |
+| 3   | On average, how long does an order take from being placed to being delivered? | 93.40 hours |
+| 4   | How many users have only made one purchase?                                   | 25          |
+|     | How many users made two purchases?                                            | 28          |
+|     | How many users made three + purchases?                                        | 71          |
+| 5   | On average, how many unique sessions do we have per hour?                     | 16.33            |
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+[SQL queries]()

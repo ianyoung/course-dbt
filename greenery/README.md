@@ -12,4 +12,4 @@
 |     | How many users made three + purchases?                                        | 71          |
 | 5   | On average, how many unique sessions do we have per hour?                     | 16.33            |
 
-[SQL queries]()
+[SQL queries](/greenery/sql/project_1.sql)

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Staging model for addresses
+  
+  - name: stg_events
+    description: Staging model for event data
+
+  - name: stg_order_items
+    description: Staging model for order line items
+
+  - name: stg_orders
+    description: Staging model for orders
+
+  - name: stg_products
+    description: Staging model for stg_products
+
+  - name: stg_promos
+    description: Staging model for promos
+
+  - name: stg_users
+    description: Staging model for users

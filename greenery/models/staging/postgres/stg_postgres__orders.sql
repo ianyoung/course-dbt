@@ -19,7 +19,7 @@ staged as (
         shipping_service,
         estimated_delivery_at,
         delivered_at,
-        status
+        status as order_status
 
     from {{ source('postgres', 'orders') }}
 

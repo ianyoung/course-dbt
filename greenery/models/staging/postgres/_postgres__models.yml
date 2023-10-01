@@ -12,147 +12,270 @@ models:
 
       - name: address
         description: "Customer address"
+        tests:
+          - not_null
 
       - name: zipcode
         description: "Customer Zipcode"
+        tests:
+          - not_null
 
       - name: state
         description: "Customer State"
+        tests:
+          - not_null
 
       - name: country
         description: "Customer Country"
+        tests:
+          - not_null
   
   - name: stg_postgres__events
     description: "Staging model for website event data"
     columns:
       - name: "event_id"
         description: ""
+        tests:
+          - unique
+          - not_null
 
       - name: "session_id"
         description: ""
+        tests:
+          - not_null
 
       - name: "user_id"
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__users')
+              field: user_id
 
       - name: "page_url"
         description: ""
+        tests:
+          - not_null
 
       - name: "created_at"
-        description: ""
+        description: "Timestamp of when the event occurred"
+        tests:
+          - not_null
 
       - name: "event_type"
         description: ""
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['checkout', 'package_shipped', 'add_to_cart', 'page_view']
 
       - name: "order_id"
         description: ""
-
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__orders')
+              field: order_id
+          
       - name: "product_id"
         description: ""
+        tests:
+          - relationships:
+              to: ref('stg_postgres__products')
+              field: product_id
 
   - name: stg_postgres__orders
     description: Staging model for customer orders
     columns:
       - name: "order_id"
         description: ""
+        tests:
+          - unique
+          - not_null
 
       - name: "user_id"
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__users')
+              field: user_id
 
       - name: "promo_id"
         description: ""
+        tests:
+          - relationships:
+              to: ref('stg_postgres__promos')
+              field: promo_id
 
       - name: "address_id"
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__addresses')
+              field: address_id
 
       - name: "created_at"
-        description: ""
+        description: "Timestamp when the order was placed"
+        tests:
+          - not_null
 
       - name: "order_cost"
         description: ""
+        tests:
+          - not_null
 
       - name: "shipping_cost"
         description: ""
+        tests:
+          - not_null
 
       - name: "order_total"
         description: ""
+        tests:
+          - not_null
 
       - name: "tracking_id"
         description: ""
+        tests:
+          - not_null:
+              where: "status != 'preparing'"
 
       - name: "shipping_service"
         description: ""
+        tests:
+          - not_null:
+              where: "status != 'preparing'"
 
       - name: "estimated_delivery_at"
         description: ""
 
       - name: "delivered_at"
         description: ""
+        tests:
+          - not_null:
+              where: "status = 'delivered'"
 
       - name: "order_status"
         description: ""
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['preparing', 'shipped', 'delivered']
 
   - name: stg_postgres__order_items
     description: Staging model for customer order line items
     columns:
       - name: "order_id"
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__orders')
+              field: order_id
 
       - name: "product_id"
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres__products')
+              field: product_id
 
       - name: "quantity"
         description: ""
+        tests:
+          - not_null
 
   - name: stg_postgres__products
     description: Staging model for product information
     columns:
       - name: "product_id"
         description: ""
+        tests:
+          - unique
+          - not_null
 
       - name: "name"
         description: ""
+        tests:
+          - not_null
 
       - name: "price"
-        description: ""
+        description: "Product price in USD"
+        tests:
+          - not_null
 
       - name: "inventory"
-        description: ""
+        description: "Unity quantity available for the product"
+        tests:
+          - not_null
 
   - name: stg_postgres__promos
     description: Staging model for promotional discounts
     columns:
       - name: "promo_id"
         description: ""
+        tests:
+          - unique
+          - not_null
 
       - name: "discount"
-        description: ""
+        description: "Discounted amount in USD"
+        tests:
+          - not_null
 
       - name: "status"
-        description: ""
+        description: "Status of the promotional code (active/inactive)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['active', 'inactive']
 
   - name: stg_postgres__users
     description: Staging model for user informaiton
     columns:
       - name: "user_id"
-        description: ""
+        description: "Unique ID for each user"
+        tests:
+          - unique
+          - not_null
 
       - name: "first_name"
         description: ""
+        tests:
+          - not_null
 
       - name: "last_name"
         description: ""
+        tests:
+          - not_null
 
       - name: "email"
-        description: ""
+        description: "Contact email address for the user"
+        tests:
+          - unique
+          - not_null
 
       - name: "phone_number"
         description: ""
+        tests:
+          - not_null
 
       - name: "created_at"
-        description: ""
+        description: "Timestamp for when the user was created"
+        tests:
+          - not_null
 
       - name: "updated_at"
-        description: ""
+        description: "Timestamp for when the user was last updated"
+        tests:
+          - not_null
 
       - name: "address_id"
-        description: ""
+        description: "Associated address of the user"
+        tests:
+          - relationships:
+              to: ref('stg_postgres__addresses')
+              field: address_id

@@ -74,11 +74,58 @@ Finally, it would also be good to view our promotional campaign activity and mon
 
 ## Part 2 - Tests
 
+NOTE: Currently only staging models have had tests added. Other models to follow.
+
 ### Q1. What assumptions are you making about each model? (i.e. why are you adding each test?)
 
-...
+ID's should all be `unique` and `not_null`. This is important to ensure every record has a unique identifier in the database.
+
+`not_null` was added to any fields where a value was expected. This helps to ensure data quality.
+
+`accepted_values` were added to any fields with specific accepted values such as `event_type` where the accepted values included `checkout`, `add_to_cart`, `package_shipped`, or `checkout`. Any other values would see this test fail.
+
+`relationship` tests were added to foreign keys linking to primary keys in other tables. This is to ensure referential integrity.
+
+Reference: [dbt generic tests](https://docs.getdbt.com/docs/build/tests#generic-tests)
 
 ### Q2. Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
 
-...
+For the tests so far added to the staging models most assumptions proved correct. However it was helpful to run the tests to both confirm my assumptions and to provide me with a place to dig into the data within the data warehouse to look at the values for the specified column.
+
+### Q3. Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
+
+To ensure these tests pass regularly they would be executed on every dbt run set up on a schedule using an orchestration tool or dbt cloud.
+
+An alert can be configured to generate an email or Slack message to inform the relevant users about the failing tests. `dbt build` will ensure that all tests are run prior to running each model and any subsequent models aren't run with failing upstream tests.
+
+## Part 3. dbt Snapshots
+
+### Q1. Run the product snapshot model using dbt snapshot and query it in snowflake to see how the data has changed since last week. 
+
+Run the snapshot:
+```
+dbt snapshot
+```
+View the changes:
+```sql
+select *
+from products_snapshot
+```
+
+### Q2. Which products had their inventory change from week 1 to week 2? 
+
+```sql
+select *
+from products_snapshot
+where dbt_valid_to is not null
+```
+The following products changed from week 1 to week 2:
+
+- Pothos
+- Bamboo
+- Philodendron
+- Monstera
+- String of pearls
+- ZZ Plant
+
 

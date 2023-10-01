@@ -1,23 +1,158 @@
 version: 2
 
 models:
-  - name: stg_addresses
-    description: Staging model for addresses
+  - name: stg_postgres__addresses
+    description: "Staging model for customer address"
+    columns:
+      - name: address_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+      - name: address
+        description: "Customer address"
+
+      - name: zipcode
+        description: "Customer Zipcode"
+
+      - name: state
+        description: "Customer State"
+
+      - name: country
+        description: "Customer Country"
   
-  - name: stg_events
-    description: Staging model for event data
+  - name: stg_postgres__events
+    description: "Staging model for website event data"
+    columns:
+      - name: "event_id"
+        description: ""
 
-  - name: stg_order_items
-    description: Staging model for order line items
+      - name: "session_id"
+        description: ""
 
-  - name: stg_orders
-    description: Staging model for orders
+      - name: "user_id"
+        description: ""
 
-  - name: stg_products
-    description: Staging model for stg_products
+      - name: "page_url"
+        description: ""
 
-  - name: stg_promos
-    description: Staging model for promos
+      - name: "created_at"
+        description: ""
 
-  - name: stg_users
-    description: Staging model for users
+      - name: "event_type"
+        description: ""
+
+      - name: "order_id"
+        description: ""
+
+      - name: "product_id"
+        description: ""
+
+  - name: stg_postgres__orders
+    description: Staging model for customer orders
+    columns:
+      - name: "order_id"
+        description: ""
+
+      - name: "user_id"
+        description: ""
+
+      - name: "promo_id"
+        description: ""
+
+      - name: "address_id"
+        description: ""
+
+      - name: "created_at"
+        description: ""
+
+      - name: "order_cost"
+        description: ""
+
+      - name: "shipping_cost"
+        description: ""
+
+      - name: "order_total"
+        description: ""
+
+      - name: "tracking_id"
+        description: ""
+
+      - name: "shipping_service"
+        description: ""
+
+      - name: "estimated_delivery_at"
+        description: ""
+
+      - name: "delivered_at"
+        description: ""
+
+      - name: "order_status"
+        description: ""
+
+  - name: stg_postgres__order_items
+    description: Staging model for customer order line items
+    columns:
+      - name: "order_id"
+        description: ""
+
+      - name: "product_id"
+        description: ""
+
+      - name: "quantity"
+        description: ""
+
+  - name: stg_postgres__products
+    description: Staging model for product information
+    columns:
+      - name: "product_id"
+        description: ""
+
+      - name: "name"
+        description: ""
+
+      - name: "price"
+        description: ""
+
+      - name: "inventory"
+        description: ""
+
+  - name: stg_postgres__promos
+    description: Staging model for promotional discounts
+    columns:
+      - name: "promo_id"
+        description: ""
+
+      - name: "discount"
+        description: ""
+
+      - name: "status"
+        description: ""
+
+  - name: stg_postgres__users
+    description: Staging model for user informaiton
+    columns:
+      - name: "user_id"
+        description: ""
+
+      - name: "first_name"
+        description: ""
+
+      - name: "last_name"
+        description: ""
+
+      - name: "email"
+        description: ""
+
+      - name: "phone_number"
+        description: ""
+
+      - name: "created_at"
+        description: ""
+
+      - name: "updated_at"
+        description: ""
+
+      - name: "address_id"
+        description: ""

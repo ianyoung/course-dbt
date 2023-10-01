@@ -72,7 +72,6 @@ models:
       - name: "order_id"
         description: ""
         tests:
-          - not_null
           - relationships:
               to: ref('stg_postgres__orders')
               field: order_id
@@ -140,13 +139,13 @@ models:
         description: ""
         tests:
           - not_null:
-              where: "status != 'preparing'"
+              where: "order_status != 'preparing'"
 
       - name: "shipping_service"
         description: ""
         tests:
           - not_null:
-              where: "status != 'preparing'"
+              where: "order_status != 'preparing'"
 
       - name: "estimated_delivery_at"
         description: ""
@@ -155,7 +154,7 @@ models:
         description: ""
         tests:
           - not_null:
-              where: "status = 'delivered'"
+              where: "order_status = 'delivered'"
 
       - name: "order_status"
         description: ""

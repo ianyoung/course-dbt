@@ -1,24 +1,9 @@
-# Greenery Ecommerce 
+# Project 2
 
-## Project 1 Answers
+## Part 1 - Models
 
-|     | Question                                                                      | Answer      |
-| --- | ----------------------------------------------------------------------------- | ----------- |
-| 1   | How many users do we have?                                                    | 130 unique  |
-| 2   | On average, how many orders do we receive per hour?                           | 7.52        |
-| 3   | On average, how long does an order take from being placed to being delivered? | 93.40 hours |
-| 4   | How many users have only made one purchase?                                   | 25          |
-|     | How many users made two purchases?                                            | 28          |
-|     | How many users made three + purchases?                                        | 71          |
-| 5   | On average, how many unique sessions do we have per hour?                     | 16.33            |
+### Q: What is our user repeat rate?
 
-[SQL queries](/greenery/sql/project_1.sql)
-
-## Project 2
-
-### Part 1 - Models
-
-**Q: What is our user repeat rate?**
 _Repeat Rate = Users who purchased 2 or more times / users who purchased_
 
 ```sql
@@ -53,7 +38,7 @@ from order_count
 
 ```
 
-**Q2. What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?**
+### Q2. What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?
 
 Good indicators of a user who will likely purchase again:
 
@@ -79,5 +64,21 @@ With more data I would look into customer support tickets to run them against th
 
 Finally, it would also be good to view our promotional campaign activity and monitor user cohorts to find any particular differences from period to period.
 
+**Q3. Explain the product mart models you added. Why did you organize the models in the way you did?**
 
+...
+
+**Q4. Paste in an image of your DAG from the docs**
+
+![Project 2 DAG](/projects/assets/uplimit-dbt-greenery-dag.png)
+
+## Part 2 - Tests
+
+### Q1. What assumptions are you making about each model? (i.e. why are you adding each test?)
+
+...
+
+### Q2. Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
+
+...
 

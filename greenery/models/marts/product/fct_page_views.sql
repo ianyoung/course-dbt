@@ -1,9 +1,8 @@
-{% set event_types = [
-    'page_view',
-    'add_to_cart',
-    'checkout',
-    'package_shipped'
-] %}
+{# Get event types existing in event_type column #}
+{% set event_types = dbt_utils.get_column_values(
+    table=ref('stg_postgres__events'), 
+    column='event_type') 
+%}
 
 with 
     session_timing_agg as (
